@@ -12,6 +12,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Failed step
-              run: echo: "step completed"
+              run: echo "step completed"
             - name: Say goodbye
               run: echo "Goodbye"
