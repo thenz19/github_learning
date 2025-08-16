@@ -1,5 +1,12 @@
 name: 07 - Using Expressions
 
+## below run-name uses expression to print "ON" or 'OFF'
+run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
+
+## similar example for using vars with OR conditions
+# env: 
+#   MY_VAR_WITH_DEFAULT: ${{ vars.MY_VAR || 'default.value' }}
+
 on:
   push:
   workflow_dispatch:
@@ -13,16 +20,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: '[debug] Print start-up data'
-         #if: ${{ inputs.debug }}
-         if: inputs.debug
+         if: ${{ inputs.debug }}
+         #if: inputs.debug -## we can use this expression also 
          run: |
            echo "Triggered by: ${{ github.event_name }}"
            echo "Branch: ${{ github.ref }}"
            echo "Commit SHA: ${{ github.sha}}"
            echo "Runner OS: ${{ Runner.OS}}"
        - name: '[debug] Print when triggered from main'
-         #if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
-         if: inputs.debug && github.ref == 'refs/heads/main'
+         if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
+         #if: inputs.debug && github.ref == 'refs/heads/main' -## we can use this expression also
          run: |
            echo "I was triggered from main"
        - name: Greetings
