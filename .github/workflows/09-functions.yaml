@@ -16,7 +16,7 @@ jobs:
                  ${{ toJSON(github.event.pull_request.labels) }}
                  EOF
             - name: Bug step
-              if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix' }}
+              if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix') }}
               run: echo "I am a bug fix"
               # above step to print pull request title, which is taken from the github context, converts toJSON format and contains function
             - name: sleep for 20 seconds
