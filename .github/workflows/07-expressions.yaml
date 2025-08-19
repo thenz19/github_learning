@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: '[debug] Print start-up data'
-         if: ${{ inputs.debug }}
+         if: ${{ github. }}
          #if: inputs.debug -## we can use this expression also 
          run: |
            echo "Triggered by: ${{ github.event_name }}"
