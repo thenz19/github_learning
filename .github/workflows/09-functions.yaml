@@ -1,7 +1,7 @@
 name: 09 - Using Functions
 
 on: 
-    pull_request:
+    #pull_request:
     workflow_dispatch:
 
 jobs:
@@ -19,11 +19,11 @@ jobs:
               if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix') }}
               run: echo "I am a bug fix"
               # above step to print pull request title, which is taken from the github context, converts toJSON format and contains function
-            - name: sleep for 20 seconds
-              run: sleep 20
+            # - name: sleep for 20 seconds
+            #   run: sleep 20
               # above step added newly to pause the workflow, so that the workflow can be cancelled and verify if the cancelled step executes
-            - name: Failing steps
-              run: exit 1
+            # - name: Failing steps
+            #   run: exit 1
             - name: I will be skipped
               if: ${{ success() }}
               run: echo "I will print if previous steps succeed"
