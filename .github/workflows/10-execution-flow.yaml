@@ -27,7 +27,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: 
             - lint-build
-            - unit-tests
+            - unit-test
         steps:
             - name: Deploying to nonprod
               run: echo "Deploying to nonprod..""
