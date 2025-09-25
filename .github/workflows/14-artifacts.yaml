@@ -37,7 +37,7 @@ jobs:
               run: npm run test -- --coverage
 
             - name: Upload test files
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ env.test-coverage-key }}
                   path: 14-artifacts/react-app/coverage
@@ -46,7 +46,7 @@ jobs:
               run: npm run build 
 
             - name: Upload build files
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ env.build-artifact-key }}
                   path: 14-artifacts/react-app/build
@@ -59,11 +59,11 @@ jobs:
 
         steps:
             - name: Download Build Artifacts
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: ${{ env.build-artifact-key }}
                   path: build
-                  
+
       # Optional: download test coverage artifact too
           # - name: Download Test Coverage
           #   uses: actions/download-artifact@v3
