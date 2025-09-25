@@ -8,7 +8,7 @@ jobs:
         name: ${{ matrix.os }}-${{ matrix.node-version }}
         runs-on: ${{ matrix.os }}
         strategy:
-            fail-fast: false
+            fail-fast: true
             matrix:
                 node-version: [18.x, 20.x, 21.x]
                 os: 
@@ -40,17 +40,18 @@ jobs:
 
     include-example:
         runs-on: ubuntu-latest
-        name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}
+        name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }}
         strategy:
             matrix:
                 color: [red, yellow]
                 shape: [triangle, pentagon]
                 size: [small, large]
                 include: 
+                    - opacity: 50
                     - color: red
                       shape: square
         steps:
             - name: Dummy step
-              run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"
+              run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }}"
 
     
