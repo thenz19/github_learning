@@ -27,7 +27,7 @@ jobs:
               id: cache
               with:
                     path: 14-artifacts/react-app/node_modules
-                    key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }} 
+                    key: deps-node-modules-${{ hashFiles('14-artifacts/react-app/package-lock.json') }} 
         
             - name: Install Dependencies
               if: steps.cache.outputs.cache-hit != 'true'
@@ -37,7 +37,7 @@ jobs:
               run: npm run test -- --coverage
 
             - name: Upload test files
-              uses: actions/upload-artifacts@v3
+              uses: actions/upload-artifact@v3
               with:
                   name: ${{ env.test-coverage-key }}
                   path: 14-artifacts/react-app/coverage
@@ -46,7 +46,7 @@ jobs:
               run: npm run build 
 
             - name: Upload build files
-              uses: actions/upload-artifacts@v3
+              uses: actions/upload-artifact@v3
               with:
                   name: ${{ env.build-artifact-key }}
                   path: 14-artifacts/react-app/build
@@ -59,10 +59,17 @@ jobs:
 
         steps:
             - name: Download Build Artifacts
-              uses: actions/download-artifacts@v3
+              uses: actions/download-artifact@v3
               with:
                   name: ${{ env.build-artifact-key }}
                   path: build
+                  
+      # Optional: download test coverage artifact too
+          # - name: Download Test Coverage
+          #   uses: actions/download-artifact@v3
+          #   with:
+            #     name: ${{ env.test-coverage-key }}
+            #     path: coverage
             
             - name: Show folder Structure
               run: ls -R
