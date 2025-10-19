@@ -1,2 +1,3 @@
 node_modules
 !.github/actions/**/node_modules
+!github_repos\github_learning\.github\actions\js-dependency-update\node_modules
